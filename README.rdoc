@@ -1,0 +1,67 @@
+= Notty
+
+It became clear to me, after reviewing {a recent Rails pull request}[https://github.com/rails/rails/pull/258],
+that when dealing with "interrogation" methods (that is, methods intended
+to return a true/false value, answering some question about an object), Ruby
+is simply not expressive enough on its own.
+
+Sure, Array#empty? is handy. But what if we want to know if our array is
+*not* empty? Should we really be expected to write:
+
+  ![1, 2, 3].empty?
+  # or...
+  not [1, 2, 3].empty?
+
+Perish the thought! We Rubyists, always moving forward toward greater levels
+of expression in our code, can do better than this.
+
+How about <tt>[1,2,3].full?</tt> Well, that would be expressive, but it's not
+expressing the right thing. You see, the array isn't full, it's just not empty!
+
+Enter Notty. Simply add Notty to your project's Gemfile, and you'll never face
+the issue of non-expressiveness again.
+
+Let's tackle that non-empty array problem once again, this time with the power of
+Notty behind us.
+
+  [1, 2, 3].not_empty? # => true
+
+Awesome! Overflowing with expressiveness.
+
+== But wait, there's more!
+
+What if we want to see if the opposite is true? No problem!
+
+  [1, 2, 3].not_not_empty? # => false
+
+Easy!
+
+In fact, as you can see from these examples from Notty's extensive test
+suite, the possibilities are limitless (preceding "limitless" claim is
+subject to platform callstack depth):
+
+  it 'negates frozen?' do
+    @o.not_frozen?.should be_true
+  end
+
+  it 'negates negated frozen?' do
+    @o.not_not_frozen?.should be_false
+  end
+
+  it 'negates negated negated frozen?' do
+    @o.not_not_not_frozen?.should be_true
+  end
+
+  it 'negates negated negated negated frozen?' do
+    @o.not_not_not_not_frozen?.should be_false
+  end
+
+  it 'negates negated negated negated negated frozen?' do
+    @o.not_not_not_not_not_frozen?.should be_true
+  end
+
+  it 'negates negated negated negated negated  negated frozen?' do
+    @o.not_not_not_not_not_not_frozen?.should be_false
+  end
+
+Install Notty today. Go forth, and express yourself!
