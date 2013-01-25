@@ -64,4 +64,4 @@ subject to platform callstack depth):
     @o.not_not_not_not_not_not_frozen?.should be_false
   end
 
-Install Notty today. Go forth, and express yourself!
+Install Notty today. Go forth, and express yourself! Or not!
